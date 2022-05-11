@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${titulo}"></h1>
+	<div>
+		<form th:action="@{/form}" th:object="${usuario}" method="POST">
+			<div>
+				<label>ID:</label>
+				<div>
+					<input type="text" name="id" th:field="*{id}">
+				</div>
+				<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+			</div>
+			<div>
+				<label>Nombre:</label>
+				<div>
+					<input type="text" name="nombre" th:field="*{nombre}">
+				</div>
+				<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+			</div>
+			<div>
+				<label>Apellido:</label>
+				<div>
+					<input type="text" name="apellido" th:field="*{apellido}">
+				</div>
+				<div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+			</div>
+			<div>
+				<label>Fecha de nacimiento:</label>
+				<div>
+					<input type="text" name="dob" th:field="*{dob}" placeholder="yyyy/MM/dd">
+				</div>
+				<div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
+			</div>
+			<div>
+				<label>Username:</label>
+				<div>
+					<input type="text" id="username" th:field="*{username}">
+				</div>
+				<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+			</div>
+			<div>
+				<label>Email:</label>
+				<div>
+					<input type="text" id="email" th:field="*{email}">
+				</div>
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+			</div>
+			<div>
+				<label>Password:</label>
+				<div>
+					<input type="password" id="password" th:field="*{password}">
+				</div>
+				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+			</div>
+			<div>
+				<label>Cuenta:</label>
+				<div>
+					<input type="number" name="cuenta" th:field="*{cuenta}">
+				</div>
+				<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+			</div>
+			<div style="margin-top: 20px;">
+				<input type="submit" value="Enviar">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
