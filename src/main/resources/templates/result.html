@@ -11,12 +11,20 @@
 			<li th:text="${usuario.id}"></li>
 			<li th:text="${usuario.nombre}"></li>
 			<li th:text="${usuario.apellido}"></li>
+			<ul>
+				<li>País (Ubicación Geográfica)</li>
+				<ul>
+					<li th:text="${usuario.pais.id}"></li>
+					<li th:text="${usuario.pais.codigo}"></li>
+					<li th:text="${usuario.pais.nombre}"></li>
+				</ul>
+			</ul>
 			<li th:text="${#dates.format(usuario.dob, 'dd/MM/yyyy')}"></li>
+			<li th:text="${usuario.cuenta}"></li>
 			<li th:text="${usuario.username}"></li>
 			<li th:text="${usuario.email}"></li>
 			<li th:text="${usuario.password}"></li>
-			<li th:text="${usuario.cuenta}"></li>
-			<li th:text="${usuario.pais.id}"></li>
+			
 		</ul>
 	</div>
 </body>
