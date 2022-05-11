@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.UpperCaseEditor;
+import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
@@ -46,6 +47,16 @@ public class FormController {
 	@ModelAttribute("paises")
 	public List<String> paises() {
 		return Arrays.asList("Argentina","Uruguay","Chile","Brasil");
+	}
+	
+	@ModelAttribute("listaPaises")
+	public List<Pais> listaPaises() {
+		return Arrays.asList(
+			new Pais(1, "AR", "Argentina"),
+			new Pais(2, "UR", "Uruguay"),
+			new Pais(3, "CH", "Chile"),
+			new Pais(4, "BR", "Brasil")
+		);
 	}
 	
 	@ModelAttribute("paisesMap")
