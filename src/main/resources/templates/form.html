@@ -64,6 +64,16 @@
 				</div>
 				<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
 			</div>
+			<div>
+				<label>País:</label>
+				<div>
+					<select name="pais" th:field="*{pais}">
+						<option value="">Seleccione un País</option>
+						<option th:each="pais : ${paises}" th:text="${pais}" th:value="${pais}"></option>
+					</select>
+				</div>
+				<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+			</div>
 			<div style="margin-top: 20px;">
 				<input type="submit" value="Enviar">
 			</div>
