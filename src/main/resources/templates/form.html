@@ -32,7 +32,7 @@
 			<div>
 				<label>Fecha de nacimiento:</label>
 				<div>
-					<input type="text" name="dob" th:field="*{dob}" placeholder="yyyy/MM/dd">
+					<input type="date" name="dob" th:field="*{dob}" placeholder="yyyy-MM-dd">
 				</div>
 				<div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
 			</div>
