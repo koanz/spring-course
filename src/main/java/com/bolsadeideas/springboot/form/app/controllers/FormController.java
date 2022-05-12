@@ -24,10 +24,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.app.editors.RolesPropertyEditor;
 import com.bolsadeideas.springboot.form.app.editors.UpperCaseEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
+import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
+import com.bolsadeideas.springboot.form.app.services.RoleService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 @Controller
@@ -40,9 +43,16 @@ public class FormController {
 	private PaisService paisService;
 	
 	@Autowired
+	private RoleService rolesService;
+	
+	@Autowired
 	private PaisPropertyEditor paisEditor;
 	
-	@InitBinder public void initBinder(WebDataBinder binder) {
+	@Autowired
+	private RolesPropertyEditor rolesEditor;
+	
+	@InitBinder 
+	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(validador); 
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,6 +62,7 @@ public class FormController {
 		binder.registerCustomEditor(String.class, "nombre", new UpperCaseEditor());
 		binder.registerCustomEditor(String.class, "apellido", new UpperCaseEditor());
 		binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+		binder.registerCustomEditor(Role.class, "roles", rolesEditor);
 	}
 	
 	@ModelAttribute("paises")
@@ -64,14 +75,24 @@ public class FormController {
 		return paisService.listar();
 	}
 	
-	@ModelAttribute("listaRolesString")
-	public List<String> listaRolesString() {
-		List<String> roles = new ArrayList<>();
+	@ModelAttribute("listaRoles")
+	public List<Role> listaRoles() {
+		return rolesService.listar();
+	}
+	
+	@ModelAttribute("listaGeneros")
+	public List<String> listaGeneros() {
+		return Arrays.asList("Femenino", "Masculino");
+	}
+	
+	@ModelAttribute("listaRolesMap")
+	public Map<String, String> listaRolesString() {
+		Map<String, String> roles = new HashMap<>();
 		
-		roles.add("ROLE_ADMIN");
-		roles.add("ROLE_USER");
-		roles.add("ROLE_MODERATOR");
-		
+		roles.put("ROLE_ADMIN", "Administrador");
+		roles.put("ROLE_USER", "Usuario");
+		roles.put("ROLE_MODERATOR", "Moderador");
+
 		return roles;
 	}
 	
@@ -91,6 +112,7 @@ public class FormController {
 	public String form(Model model) {
 		Usuario usuario = new Usuario();
 		usuario.setId("12.456.887-K");
+		usuario.setHabilitar(true);
 		
 		model.addAttribute("titulo", "Formulario de Usuario");
 		model.addAttribute("usuario", usuario);
