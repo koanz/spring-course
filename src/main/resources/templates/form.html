@@ -74,6 +74,14 @@
 				</div>
 				<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
 			</div>
+			<div>
+				<label>Roles:</label>
+				<div th:each="role : ${listaRolesString}">
+					<input  type="checkbox" name="roles" th:field="*{roles}" th:value="${role}">
+					<label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+				</div>
+				<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+			</div>
 			<div style="margin-top: 20px;">
 				<input type="submit" value="Enviar">
 			</div>
