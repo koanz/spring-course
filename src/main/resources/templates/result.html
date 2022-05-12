@@ -27,9 +27,11 @@
 			<ul>
 				<li>Roles de Usuario</li>
 				<ul>
-					<li th:each="role : ${usuario.roles}" th:text="${role}"></li>
+					<li th:each="role : ${usuario.roles}" th:text="'ID: ' + ${role.id} + ', Nombre: ' +${role.nombre} + ', Role: ' + ${role.role}"></li>
 				</ul>
 			</ul>
+			<li th:text="'Estado: ' + ${usuario.habilitar}"></li>
+			<li th:text="'Género: ' + ${usuario.genero}"></li>
 		</ul>
 	</div>
 </body>

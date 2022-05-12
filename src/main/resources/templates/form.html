@@ -76,11 +76,26 @@
 			</div>
 			<div>
 				<label>Roles:</label>
-				<div th:each="role : ${listaRolesString}">
-					<input  type="checkbox" name="roles" th:field="*{roles}" th:value="${role}">
-					<label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+				<div th:each="role : ${listaRoles}">
+					<input  type="checkbox" name="roles" th:id="${role.id}" th:field="*{roles}" th:value="${role.id}">
+					<label th:for="${role.id}" th:text="${role.nombre}"></label>
 				</div>
 				<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+			</div>
+			<div>
+				<label>Habilitar:</label>
+				<div>
+					<input  type="checkbox" name="habilitar" id="habilitar" th:field="*{habilitar}" th:value="${usuario.habilitar}">
+					<label for="habilitar">Habilitar</label>
+				</div>
+			</div>
+			<div>
+				<label>Género:</label>
+				<div th:each="genero : ${listaGeneros}">
+					<input  type="radio" th:field="*{genero}" th:value="${genero}">
+					<label th:for="${#ids.prev('genero')}" th:text="${genero}"></label>
+				</div>
+				<div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
 			</div>
 			<div style="margin-top: 20px;">
 				<input type="submit" value="Enviar">
