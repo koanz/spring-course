@@ -48,8 +48,13 @@ public class Usuario {
 	@NotNull
 	private Pais pais;
 	
+	@NotEmpty(message = "Debe seleccionar al menos un Rol")
+	private List<Role> roles;
+	
+	private Boolean habilitar;
+	
 	@NotEmpty
-	private List<String> roles;
+	private String genero;
 
 	public String getId() {
 		return id;
@@ -123,11 +128,27 @@ public class Usuario {
 		this.pais = pais;
 	}
 
-	public List<String> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getHabilitar() {
+		return habilitar;
+	}
+
+	public void setHabilitar(Boolean habilitar) {
+		this.habilitar = habilitar;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 }
