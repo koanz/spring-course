@@ -1,10 +1,12 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -45,6 +47,9 @@ public class Usuario {
 	
 	@NotNull
 	private Pais pais;
+	
+	@NotEmpty
+	private List<String> roles;
 
 	public String getId() {
 		return id;
@@ -116,5 +121,13 @@ public class Usuario {
 
 	public void setPais(Pais pais) {
 		this.pais = pais;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }
